@@ -52,6 +52,7 @@ public class Database {
 
     //sql stuff to insert/delete
     public void insertUsers(User user){
+        this.createConnection();
         try {
             String query = "INSERT IGNORE INTO USERS (Name,email,password, DateRegistered, VALUES (?,?,?,?,?,?,?)";
             PreparedStatement myStmt = dbConnect.prepareStatement(query);
@@ -68,7 +69,28 @@ public class Database {
 
     }
 
+    public User getUser(String name, String password){
+        User user = null;
+        this.createConnection();
+        try {
+			Statement myStmt = dbConnect.createStatement();
+            results = myStmt.executeQuery("SELECT * FROM USERS WHERE name=? AND password = ?");
+            ((PreparedStatement) myStmt).setString(1, name);
+            ((PreparedStatement) myStmt).setString(2, password);
+            while (results.next()){
+                user= new User(results.getString("name"), results.getString("password"), results.getString("email "));
+            }
+            myStmt.close();
+		}
+	    catch (SQLException ex) {
+        ex.printStackTrace();
+        }
+        return user;
+        }
+
+
     public boolean verifyUser(String name, String password) throws SQLException{
+        this.createConnection();
         int count = 0;
         PreparedStatement stmt = null;
         ResultSet rset = null;
@@ -101,6 +123,7 @@ public class Database {
 
     //get all movies
     public ArrayList<Movie> getAllMovies(){
+        this.createConnection();
         ArrayList<Movie> Movies = new ArrayList<Movie>();
         try {
 			Statement myStmt = dbConnect.createStatement();
@@ -118,6 +141,7 @@ public class Database {
     }
 
     public String getAllSeats(Movie movie){
+        this.createConnection();
         String roomStatus= "";
         try {
 			Statement myStmt = dbConnect.createStatement();
