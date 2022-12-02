@@ -12,6 +12,12 @@ CREATE TABLE MOVIES (
 	primary key (MovieID)
 );
 
+INSERT INTO MOVIES (MovieName, MovieTime, Amount)
+VALUES
+('Batman', '2022-11-11 11:30:30' , 10),
+('Batman', '2022-11-12 12:00:00', 10),
+('Superman','2022-11-12 12:00:00', 10);
+
 
 DROP TABLE IF EXISTS USERS;
 CREATE TABLE USERS (
@@ -19,10 +25,19 @@ CREATE TABLE USERS (
 	Name			varchar(50) UNIQUE,
 	email       	varchar(50),
     DateRegistered  DATETIME,
-    isRegistered    boolean DEFAULT FALSE,
 	primary key (UserID)
     
 );
+
+
+INSERT INTO USERS (Name, email, DateRegistered)
+VALUES
+('Khevin', 'khevinjug@gmail.com' , '2022-11-11 11:30:30'),
+('Abdullah', 'abdullahkhubaib@gmail.com', '2022-11-11 11:30:30'),
+('Scott','jsdelsing@icloud.com', '2022-11-11 11:30:30');
+
+
+
 
 DROP TABLE IF EXISTS SEATS;
 CREATE TABLE SEATS (
