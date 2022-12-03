@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Ticket {
     private String email;
@@ -17,5 +18,24 @@ public class Ticket {
 
     }
 
+    public String getEmail(){
+        return email;
+    }
+
+    public String getTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = dateBought.format(formatter);
+
+        return formattedDateTime;
+    }
+
+
+    public int getID(){
+        return Id;
+    }
+
+    public int seatNo(){
+        return seatNo;
+    }
 
 }
