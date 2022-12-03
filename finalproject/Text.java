@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 public class Text implements Component{
     public String str;
     public int x,y;
+    //example variables, should use user input instead for these variables
     public String name = "hajin";
     public String email = "kimhajin2001@gmail.com";
     public String amount = "$20.00";
