@@ -25,7 +25,7 @@ public class Movie {
     public int getAmount() {
         return amount;
     }
-    
+
     public int getMovieId() {
         return MovieId;
     }

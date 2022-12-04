@@ -2,18 +2,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class User {
-    protected boolean isRegistered = false;
+    
     private String email;
     private String name;
     private LocalDateTime time;
     private String password;
-    protected Database dbs = Database.getInstance();
-    public User(String name ,String password, String email){
+    private String creditCard;
+    private Database dbs = Database.getInstance();
+  
+    public User(String name ,String password, String email, String creditCard){
         this.name = name;
         this.email = email;
         this.password = password;
+        this.creditCard = creditCard;
         this.time = LocalDateTime.now();
-        dbs.insertUsers(this);
+       
         
     }
 
@@ -25,6 +28,13 @@ public class User {
         return name;
     }
 
+    public String getCreditCard(){
+        return creditCard;
+    }
+
+    public void insertUserDB(){
+        dbs.insertUsers(this);
+    }
     
    
     public String getTime() {

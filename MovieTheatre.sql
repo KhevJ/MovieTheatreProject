@@ -14,9 +14,9 @@ CREATE TABLE MOVIES (
 
 INSERT INTO MOVIES (MovieName, MovieTime, Amount)
 VALUES
-('Batman', '2022-11-11 11:30:30' , 10),
-('Batman', '2022-11-12 12:00:00', 10),
-('Superman','2022-11-12 12:00:00', 10);
+('Batman', '2023-01-11 11:30:30' , 10),
+('Batman', '2023-01-12 12:00:00', 10),
+('Superman','2023-01-12 12:00:00', 10);
 
 
 DROP TABLE IF EXISTS USERS;
@@ -25,17 +25,18 @@ CREATE TABLE USERS (
 	Name			varchar(50) UNIQUE,
 	email       	varchar(50),
     password        varchar(50),
+    creditCard       varchar(50),
     DateRegistered  DATETIME,
 	primary key (UserID)
     
 );
 
 
-INSERT INTO USERS (Name, email,password, DateRegistered)
+INSERT INTO USERS (Name, email,password, creditCard, DateRegistered)
 VALUES
-('Khevin', 'khevinjug@gmail.com' ,'khevin', '2022-11-11 11:30:30'),
-('Abdullah', 'abdullahkhubaib@gmail.com','abdullah', '2022-11-11 11:30:30'),
-('Scott','jsdelsing@icloud.com','scott', '2022-11-11 11:30:30');
+('Khevin', 'khevinjug@gmail.com' ,'khevin','1111111111111111', '2022-11-11 11:30:30'),
+('Abdullah', 'abdullahkhubaib@gmail.com','abdullah','1111111111111112' ,'2022-11-11 11:30:30'),
+('Scott','jsdelsing@icloud.com','scott','1111111111111113' ,'2022-11-11 11:30:30');
 
 
 
@@ -53,14 +54,14 @@ CREATE TABLE SEATS (
 );
 
 
-DROP TABLE IF EXISTS BOUGHTTICKETS;
-CREATE TABLE BOUGHTTICKETS (
+DROP TABLE IF EXISTS TICKETS;
+CREATE TABLE TICKETS (
 	TicketID			int not null AUTO_INCREMENT,
     FMovieID        int not null,
-    SeatNo            char(1) not null,
-    UserName        varchar(25),
-    UserEmail          varchar(25),
-    Amount              int not null,       
+    email            varchar(50),
+    SeatNo            int not null,
+    Amount              int not null,     
+    DateBought         DATETIME,  
 	primary key (TicketID),
   
     FOREIGN KEY(FMovieID) REFERENCES MOVIES(MovieID)
@@ -71,12 +72,10 @@ CREATE TABLE BOUGHTTICKETS (
 DROP TABLE IF EXISTS CREDIT;
 CREATE TABLE CREDIT (
 	creditID			int not null AUTO_INCREMENT,
-    FUserID           int not null,
-    Amount              int not null,      
-	primary key (creditID),
-    
-    FOREIGN KEY(FUserID) REFERENCES USERS(UserID)
-    ON DELETE CASCADE ON UPDATE CASCADE
+    email               varchar(25) UNIQUE,
+    Amount              int not null,  
+    dateCredit             DATETIME,
+	primary key (creditID)
 
 );
 
@@ -91,6 +90,15 @@ DELIMITER ;
 
 INSERT INTO SEATS (FMovieID , Seats)
 VALUES
-(1, '111111111' ),
-(2, '111111111'),
-(3,'111111111');
+(1, '111101111' ),
+(2, '111101111'),
+(3,'110111111');
+
+
+INSERT INTO CREDIT(email, Amount, dateCredit)
+VALUES
+('hajin@gmail.com', 850 ,'2022-11-11 11:30:30');
+
+INSERT INTO TICKETS(FMovieID, email, SeatNo, Amount, DateBought)
+VALUES
+(3, 'khevinjug@gmail.com' , 3, 1000, '2022-12-5 11:30:30');

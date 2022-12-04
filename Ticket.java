@@ -4,22 +4,26 @@ import java.time.format.DateTimeFormatter;
 public class Ticket {
     private String email;
     private LocalDateTime dateBought;
-    private int Id;
+    private Movie movie;
     private int seatNo;
     private Database dbs = Database.getInstance();
 
-    public Ticket(String email, int id, int seatNo){
+    public Ticket(String email,  int seatNo, Movie movie, float amount){
         this.email = email;
-        this.Id = id;
         this.seatNo = seatNo;
+        this.movie = movie;
         this.dateBought = LocalDateTime.now(); //current date and time
-        dbs.insertTicket(this);
+        dbs.insertTicket(this , amount);
 
 
     }
 
     public String getEmail(){
         return email;
+    }
+    
+    public Movie getMovie(){
+        return movie;
     }
 
     public String getTime() {
@@ -30,11 +34,9 @@ public class Ticket {
     }
 
 
-    public int getID(){
-        return Id;
-    }
+    
 
-    public int seatNo(){
+    public int getSeatNo(){
         return seatNo;
     }
 
