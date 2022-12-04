@@ -58,7 +58,7 @@ public class cancelScreen extends Decorator implements ActionListener{
                 
                 try {
                     if (dbs.verifyTicket(number)){ 
-                       if(dbs.verifyRegistered(id)){
+                       if(dbs.verifyRegistered(dbs.getEmailFromTicket(number))){
                         dbs.insertCredit(dbs.getEmailFromTicket(number), dbs.getAmountFromTicket(number), getTime(date));
                         
                        }
