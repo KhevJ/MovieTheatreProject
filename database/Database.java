@@ -676,7 +676,7 @@ public class Database {
     //getting instance
     public static Database getInstance(){
         if(onlyInstance == null){
-            onlyInstance = new Database("jdbc:mysql://localhost/MOVIE_THEATRE", "root", "vanilla@1451");
+            onlyInstance = new Database("jdbc:mysql://localhost/MOVIE_THEATRE", "ensf480User", "ensf480");
         }
 
         return onlyInstance;
